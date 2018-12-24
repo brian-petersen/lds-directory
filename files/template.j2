@@ -1,0 +1,59 @@
+<html>
+<head>
+    <style>
+        body {
+            padding: 30px;
+        }
+
+        ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        li {
+            display: inline-block;
+            width: 230px;
+            margin-left: 10px;
+            margin-bottom: 30px;
+        }
+
+        img {
+            width: auto;
+            height: auto;
+            max-width: 200px;
+            max-height: 200px;
+        }
+
+        .missing-image {
+            width: 200px;
+            height: 200px;
+            background: lightgrey;
+        }
+
+        .name {
+            margin-top: 10px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <ul>
+    {% for member in members %}
+        <li>
+            {% if member.image_path %}
+                <img src="{{ member.image_path }}">
+            {% else %}
+                <div class="missing-image"></div>
+            {% endif %}
+            <div class="name">{{ member.formatted_name }}</div>
+            <div class="full-name">({{ member.surname }}, {{ member.given_name }})</div>
+            <div class="phone">{{ member.phone }}</div>
+            <div class="email">{{ member.email }}</div>
+            <div class="calling">{{ member.formatted_calling }}</div>
+            <div class="calling">{{ member.encoded_image }}</div>
+        </li>
+    {% endfor %}
+    </ul>
+</body>
+</html>
